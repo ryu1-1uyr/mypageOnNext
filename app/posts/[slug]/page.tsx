@@ -1,0 +1,32 @@
+import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { prisma } from "@/lib/prisma";
+
+type Props = {
+  params: { slug: string };
+};
+
+export default async function PostPage({ params }: Props) {
+  const post = await prisma.post.findUnique({
+    where: { slug: params.slug },
+    include: { author: true },
+  });
+
+  if (!post) notFound();
+
+  return (
+    <main className="max-w-3xl mx-auto px-6 py-12">
+      <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+      <div className="text-sm text-gray-500 mb-8 space-y-1">
+        <p>作成日: {new Date(post.createdAt).toLocaleDateString("ja-JP")}</p>
+        <p>更新日: {new Date(post.updatedAt).toLocaleDateString("ja-JP")}</p>
+      </div>
+      <article className="prose prose-neutral max-w-none">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {post.content}
+        </ReactMarkdown>
+      </article>
+    </main>
+  );
+}

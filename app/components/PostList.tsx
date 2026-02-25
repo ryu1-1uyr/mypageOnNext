@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
 export default async function PostList() {
@@ -32,7 +33,9 @@ export default async function PostList() {
           key={post.id}
           className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
         >
-          <h3 className="text-xl font-semibold">{post.title}</h3>
+          <Link href={`/posts/${post.slug}`}>
+            <h3 className="text-xl font-semibold hover:underline">{post.title}</h3>
+          </Link>
           <p className="text-sm text-gray-500 mt-1">
             by {post.author.email} ·{" "}
             {new Date(post.createdAt).toLocaleDateString("ja-JP")}
