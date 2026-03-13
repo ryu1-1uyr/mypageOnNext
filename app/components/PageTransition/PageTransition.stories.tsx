@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import React from "react";
 import PageTransition from "./PageTransition";
 
 const meta: Meta<typeof PageTransition> = {

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import React from "react";
 import BackButton from "./BackButton";
 import { PageTransitionContext } from "@/app/components/PageTransition/PageTransitionContext";
 
@@ -8,6 +7,9 @@ const meta: Meta<typeof BackButton> = {
   component: BackButton,
   parameters: {
     layout: "padded",
+    nextjs: {
+      appDirectory: true,
+    },
   },
   tags: ["autodocs"],
 };
@@ -44,9 +46,7 @@ export const InArticleLayout: Story = {
         <h1 className="text-3xl font-bold text-elements-headline mb-4">
           記事タイトルのサンプル
         </h1>
-        <p className="text-sm text-elements-paragraph">
-          2026-03-13
-        </p>
+        <p className="text-sm text-elements-paragraph">2026-03-13</p>
       </div>
     ),
   ],
