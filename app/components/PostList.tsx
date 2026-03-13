@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import PostListView from "@/app/components/PostListView";
+import PostsHydrator from "@/app/components/PostsHydrator";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -17,8 +18,15 @@ export default async function PostList() {
     slug: post.slug,
     authorEmail: post.author.email,
     createdAt: post.createdAt,
+    updatedAt: post.updatedAt,
     content: post.content,
   }));
 
-  return <PostListView posts={items} />;
+  return (
+    <>
+      {/* サーバーで取得した posts を Client 側の Context に流し込む */}
+      <PostsHydrator posts={items} />
+      <PostListView posts={items} />
+    </>
+  );
 }

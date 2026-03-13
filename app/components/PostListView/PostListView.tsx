@@ -6,6 +6,7 @@ export type PostItem = {
   slug: string; // markdown 中の画像パスで使用予定
   authorEmail: string;
   createdAt: Date;
+  updatedAt: Date;
   content: string;
 };
 
