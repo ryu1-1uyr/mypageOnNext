@@ -1,27 +1,20 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { useParams, notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { prisma } from "@/lib/prisma";
+import { usePostsCache } from "@/app/contexts/PostsCache";
 import PageTransition from "@/app/components/PageTransition";
 import BackButton from "@/app/components/BackButton";
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
+export default function PostPage() {
+  const { id } = useParams<{ id: string }>();
+  const { posts } = usePostsCache();
 
-export default async function PostPage({ params }: Props) {
-  const { id } = await params;
+  // id でキャッシュから検索（sessionStorage 復元 or トップ経由のいずれか）
+  const post = posts.find((p) => p.id === id);
 
-  // 一旦決め打ち findUniqueにすべき
-  const post = (
-    await prisma.post.findMany({
-      where: { id: "3" },
-      orderBy: { createdAt: "desc" },
-      include: { author: true },
-    })
-  )[0];
-
-  if (!post) notFound();
+  if (!post) return notFound();
 
   return (
     <PageTransition>

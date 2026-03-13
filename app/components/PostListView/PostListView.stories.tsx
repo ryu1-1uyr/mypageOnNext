@@ -20,6 +20,7 @@ const samplePosts = [
     slug: "nextjs-supabase-fullstack",
     authorEmail: "author@example.com",
     createdAt: new Date("2026-03-01"),
+    updatedAt: new Date("2026-03-05"),
     content:
       "Next.jsとSupabaseを組み合わせることで、型安全なフルスタックアプリを素早く構築できます。この記事では基本的なセットアップから実際の開発手順まで解説します。",
   },
@@ -29,6 +30,7 @@ const samplePosts = [
     slug: "tailwindcss-best-practices",
     authorEmail: "writer@example.com",
     createdAt: new Date("2026-02-20"),
+    updatedAt: new Date("2026-02-22"),
     content:
       "TailwindCSSを使ったスタイリングのベストプラクティスを紹介します。コンポーネントの設計からレスポンシブ対応まで幅広く解説します。",
   },
@@ -38,6 +40,7 @@ const samplePosts = [
     slug: "prisma-orm-intro",
     authorEmail: "dev@example.com",
     createdAt: new Date("2026-02-10"),
+    updatedAt: new Date("2026-02-10"),
     content:
       "PrismaはTypeScriptと相性の良いORMです。スキーマ定義からマイグレーション、クエリの書き方まで基本を押さえましょう。",
   },
