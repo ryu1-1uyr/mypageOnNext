@@ -16,6 +16,8 @@ export default async function PostPage({ params }: Props) {
   const post = (
     await prisma.post.findMany({
       where: { id: "3" },
+      orderBy: { createdAt: "desc" },
+      include: { author: true },
     })
   )[0];
 
