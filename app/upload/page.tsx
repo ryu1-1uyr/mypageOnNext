@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, DragEvent } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
@@ -227,7 +228,7 @@ export default function UploadPage() {
             <div className="w-full h-[600px] px-4 py-3 rounded-lg bg-elements-headline overflow-y-auto">
               {content ? (
                 <article className="prose prose-neutral max-w-none">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
                     {content}
                   </ReactMarkdown>
                 </article>

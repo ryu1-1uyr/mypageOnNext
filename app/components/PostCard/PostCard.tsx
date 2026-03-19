@@ -11,6 +11,7 @@ type Props = {
 function stripMarkdown(text: string): string {
   return text
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "") // ![alt](url)
+    .replace(/<[^>]+>/g, "") // HTML タグ全除去
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // [text](url) → text
     .replace(/#{1,6}\s+/g, "") // 見出し
     .replace(/[*_]{1,3}([^*_]+)[*_]{1,3}/g, "$1") // bold/italic
